@@ -1,0 +1,156 @@
+% This style file requires at least LaTeX version 2e.
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage[english]{babel}
+\RequirePackage{translations}
+
+% --- Appendici in italiano
+\addto\captionsitalian{%
+   \renewcommand{\appendixtocname}{Appendici}%
+   \renewcommand{\appendixpagename}{Appendici}%
+}
+% ---
+
+% Disable useless warnings
+\RequirePackage{silence}
+\WarningFilter{latex}{You have requested package}
+\WarningFilter{latex}{There were undefined references}
+\WarningFilter{latexfont}{Size substitutions with differences}
+\WarningFilter{latexfont}{Font shape}
+\WarningFilter{latex}{Command}
+\WarningFilter{biblatex}{Using fall-back BibTeX(8)}
+\WarningFilter{biblatex}{Please (re)run BibTeX on the file(s)}
+\WarningFilter{auxhook}{Cannot patch}
+\WarningFilter{glossaries}{No \printglossary or \printglossaries found.}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{relsize}	% font relative size
+\RequirePackage{amsmath, amssymb, amsthm, mathtools}
+\RequirePackage{xcolor}
+\RequirePackage{float}		% float option [H]
+\RequirePackage{enumitem}
+\RequirePackage{cancel}
+\RequirePackage[colorlinks]{hyperref}
+
+\RequirePackage{mathrsfs} 	% serif fonts
+\RequirePackage{bbm}        % indicator function
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}   % prettier tables
+\RequirePackage{array}
+% Prevent latex error on too many alphabets
+
+\RequirePackage{bm} 		% \bm for bold mathematical symbols
+\setlength\parindent{0pt}
+\RequirePackage{setspace}
+\RequirePackage[framemethod=TikZ]{mdframed} % Theorem
+\RequirePackage{enumitem}
+\RequirePackage{chngcntr}
+\RequirePackage[margin=0.5cm]{caption}
+
+%----
+% Base math spacing inside matrix
+\makeatletter
+\preto\env@matrix{\renewcommand{\arraystretch}{1}}
+\makeatother
+%----
+
+\frenchspacing							% more pleasant spacing
+
+
+
+% Centered column for arrays
+\newcommand{\centercolumn}[1]{\multicolumn{1}{c}{#1}}
+
+% Bold math when placed in section titles
+\makeatletter
+\g@addto@macro\bfseries{\boldmath}
+\makeatother
+
+
+%---------------
+% Page geometry
+%---------------
+\setstretch{1.17}
+\setlist[enumerate]{itemsep=1mm}
+\setlist[itemize]{itemsep=1mm}
+\renewcommand{\labelitemi}{\guilsinglright}
+
+% Do not linebreak equations
+\relpenalty=10000
+\binoppenalty=10000
+\graphicspath{{./Images/}}
+\def\svgwidth{0.8\textwidth}
+\addto\captionsitalian{\renewcommand\proofname{Dim.}}
+\setlength{\parskip}{1pt}
+\addtolength{\jot}{6pt}					% math spacing   
+\renewcommand{\arraystretch}{1.22}
+
+% Title geometry
+\RequirePackage{titling}				% Title font
+\setlength{\droptitle}{-1cm}
+\pretitle{\vspace{\droptitle}\begin{center}\Large\sc}
+\posttitle{\end{center}}
+
+
+\RequirePackage[verbose=true,letterpaper]{geometry}
+\AtBeginDocument{
+  \newgeometry{
+    textheight=9in,
+    textwidth=6in,
+    top=0.8in,
+	bottom=0.8in,
+    headheight=14pt,
+    headsep=15pt,
+    footskip=0.4in
+  }
+}
+
+\widowpenalty=10000
+\clubpenalty=10000
+% \flushbottom
+\sloppy
+
+\usepackage{emptypage} % cleardoublepage makes white pages
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{\nouppercase\leftmark}
+\fancyfoot[C]{\thepage}
+\makeatletter
+
+%--------------------------------------------------
+% table and figure counter as {section}.{number} %
+%--------------------------------------------------
+\RequirePackage{chngcntr}
+
+%---- Hyperlinks to citations
+\hypersetup{
+	colorlinks,
+	linkcolor=black!50!black,
+	citecolor=blue!50!black,
+	urlcolor=blue!80!black
+}
+
+\RequirePackage{sectsty}
+\sectionfont{\centering\scshape\smaller}
+\subsectionfont{\smaller}
+
+%---- Suppress section numbering
+% \renewcommand{\thesection}{\hspace{-0.58cm}}
+% \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
+% -- Remove space after hiding number
+% \makeatletter
+% \def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+% \let\sectionignore\@gobbletwo
+% \let\latex@numberline\numberline
+% \def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+% \makeatother
+
+\pdfsuppresswarningpagegroup=1
+\pdfminorversion=5
+\pdfobjcompresslevel=3 
+\pdfcompresslevel=9
+
